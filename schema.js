@@ -64,6 +64,12 @@ const Post = new GraphQLObjectType({
                     return post.content;
                 }
             },
+            person: {
+                type: Person,
+                resolve(post) {
+                    return post.getPerson()
+                }
+            }
         }
     }
 });
