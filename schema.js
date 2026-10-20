@@ -33,7 +33,7 @@ const Person = new GraphQLObjectType({
             posts: {
                 type: Post,
                 resolve(person) {
-                    person.getPosts()
+                    return person.getPosts()
                 }
             }
         }
