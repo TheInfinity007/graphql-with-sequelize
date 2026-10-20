@@ -31,7 +31,7 @@ const Person = new GraphQLObjectType({
                 }
             },
             posts: {
-                type: Post,
+                type: new GraphQLList(Post),
                 resolve(person) {
                     return person.getPosts()
                 }
@@ -88,7 +88,6 @@ const Query = new GraphQLObjectType({
                     return Db.models.person.findAll({ where: args })
                 }
             },
-
             posts: {
                 type: new GraphQLList(Post),
                 resolve(root, args) {
