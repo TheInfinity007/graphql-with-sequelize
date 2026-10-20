@@ -1,4 +1,4 @@
-import graphql, { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
+import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql';
 import Db from './db.js';
 
 const Person = new GraphQLObjectType({
@@ -69,7 +69,7 @@ const Query = new GraphQLObjectType({
     fields: () => {
         return {
             people: {
-                type: GraphQLList(Person),
+                type: new GraphQLList(Person),
                 args: {
                     id: {
                         type: GraphQLInt
