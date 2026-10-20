@@ -1,6 +1,6 @@
 import { DataTypes, Sequelize } from "sequelize";
 import _ from "lodash";
-import Faker from "faker";
+import Faker from "@faker-js/faker";
 
 const Conn = new Sequelize({
     database: process.env.DB_NAME,
