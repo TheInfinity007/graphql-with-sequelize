@@ -30,6 +30,12 @@ const Person = new GraphQLObjectType({
                     return person.email
                 }
             },
+            posts: {
+                type: Post,
+                resolve(person) {
+                    person.getPosts()
+                }
+            }
         }
     }
 })
