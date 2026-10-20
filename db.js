@@ -1,11 +1,13 @@
 import { DataTypes, Sequelize } from "sequelize";
 import _ from "lodash";
-import Faker from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
+
+import { DB_CONFIG } from "./config.js"
 
 const Conn = new Sequelize({
-    database: process.env.DB_NAME,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+    database: DB_CONFIG.DB_NAME,
+    username: DB_CONFIG.DB_USERNAME,
+    password: DB_CONFIG.DB_PASSWORD,
     dialect: 'postgres',
     host: 'localhost'
 })
@@ -37,7 +39,7 @@ const modelNamePost = 'post';
 
 const postAttributes = {
     title: {
-        types: DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     content: {
@@ -54,9 +56,9 @@ Post.belongsTo(Person)
 Conn.sync({ force: true }).then(() => {
     _.times(10, () => {
         return Person.create({
-            firstName: Faker.name.firstName(),
-            lastName: Faker.name.lastName(),
-            email: Faker.internet.email()
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            email: faker.internet.email()
         })
     })
 })
