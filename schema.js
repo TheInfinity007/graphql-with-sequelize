@@ -18,7 +18,7 @@ const Person = new GraphQLObjectType({
                     return person.firstName
                 }
             },
-            firstName: {
+            lastName: {
                 type: GraphQLString,
                 resolve(person) {
                     return person.lastName
@@ -83,6 +83,12 @@ const Query = new GraphQLObjectType({
                 }
             },
 
+            posts: {
+                type: new GraphQLList(Post),
+                resolve(root, args) {
+                    return Db.models.post.findAll({ where: args })
+                }
+            }
         }
     }
 })
